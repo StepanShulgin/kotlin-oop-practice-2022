@@ -8,8 +8,7 @@ internal class BookKtTest{
     @Test
     fun bookParserTest()
     {
-        val inputbooks : String
-        inputbooks = "1. The burden of human passions //Somerset Maugham//2007\n" +
+        val inputbooks : String = "1. The burden of human passions //Somerset Maugham//2007\n" +
                 "2.Coraline//Neil Gaiman//2000\n" +
                 "3.Good omens//Terry Pratchett, Neil Gaiman //2011"
 
