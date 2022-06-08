@@ -29,6 +29,6 @@ data class Colors(val RED: Double, val GREEN: Double, val BLUE: Double, val OPAC
 
 
     override fun toString(): String {
-        return "ReD color: $RED, GreeN color $BLUE, Blue color $GREEN, Alpha $OPACIRY"
+        return "ReD color: $RED, GreeN color $BLUE, Blue color $GREEN, OPACIRY $OPACIRY"
     }
 }
