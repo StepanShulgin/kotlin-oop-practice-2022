@@ -2,6 +2,7 @@
 
 package labOOP6
 
+
 import labOOP2.ShapeCollector
 import labOOP2.shapes.Circle
 import labOOP2.shapes.Rectangle
@@ -10,7 +11,6 @@ import labOOP2.shapes.Triangle
 
 
 fun main() {
-
 
     val circle = Circle(25.0, labOOP2.SetColor.Pink.color, labOOP2.SetColor.Green.color)
     val triangle = Triangle(5.0, 5.0, 5.0, labOOP2.SetColor.Blue.color, labOOP2.SetColor.Green.color)
@@ -24,7 +24,7 @@ fun main() {
 
     Serializer.doSerializationFile(shapeList.getListOfShapes(), "file1.txt")
     shapeList = ShapeCollector(Serializer.doDeserializationFile("file1.txt"))
-    println("Shapes: ${shapeList.getListOfShapes()}")
+    println("Shapes read from file: ${shapeList.getListOfShapes()}")
     shapeList.addNewShape(secondCircle)
     shapeList.addNewShape(secondTriangle)
     shapeList.addNewShape(secondRectangle)
