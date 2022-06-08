@@ -23,7 +23,7 @@ fun main() {
     val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle,square))
 
 
-    println("Collection's size: ${shapeCollection.getListOfShapes()}")
+    println("All shapes: ${shapeCollection.getListOfShapes()}")
     println("Only circles : ${shapeCollection.getByType(Circle::class.java)}")
     println("Collection's size: ${shapeCollection.getListOfShapesSize()}")
 
