@@ -24,7 +24,7 @@ fun main() {
 
     Serializer.doSerializationFile(shapeCollection.getListOfShapes(), "file1.txt")
     shapeCollection = ShapeCollector(Serializer.doDeserializationFile("file1.txt"))
-    println("Shapes read from file: ${shapeCollection.getListOfShapes()}")
+    println("Shapes: ${shapeCollection.getListOfShapes()}")
     shapeCollection.addNewShape(secondcircle)
     shapeCollection.addNewShape(secondtriangle)
     shapeCollection.addNewShape(secondrectangle)
