@@ -3,16 +3,15 @@ package labOOP1
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class BookKtTest{
+internal class BookKtTest {
 
     @Test
-    fun bookParserTest()
-    {
-        val inputbooks : String = "1. The burden of human passions //Somerset Maugham//2007\n" +
+    fun bookParserTest() {
+        val bookString: String = "1. The burden of human passions //Somerset Maugham//2007\n" +
                 "2.Coraline//Neil Gaiman//2000\n" +
                 "3.Good omens//Terry Pratchett, Neil Gaiman //2011"
 
-        val bookList:List<Book> = parseBooks(inputbooks)
+        val bookList: List<Book> = parseBooks(bookString)
 
         assertEquals(bookList[0].title, "The burden of human passions")
         assertEquals(bookList[0].authors[0], "Somerset Maugham")

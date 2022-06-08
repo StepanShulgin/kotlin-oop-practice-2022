@@ -3,7 +3,7 @@ package labOOP2
 
 import labOOP2.shapeInterface.ColoredShape2d
 
-class ShapeCollector<T: ColoredShape2d>(_listOfShapes: List<T>) {
+class ShapeCollector<T : ColoredShape2d>(_listOfShapes: List<T>) {
     private val shapeList: MutableList<T>
 
     init {
@@ -12,18 +12,16 @@ class ShapeCollector<T: ColoredShape2d>(_listOfShapes: List<T>) {
 
     fun addNewShape(newShape: T) = shapeList.add(newShape)
 
-    fun minAreaSearcher(): List<T> {
-        if (shapeList.isEmpty())
-        {
+    fun searchMinArea(): List<T> {
+        if (shapeList.isEmpty()) {
             return emptyList()
         }
-        val minArea = shapeList.minOf{ it.area }
+        val minArea = shapeList.minOf { it.area }
         return shapeList.filter { it.area == minArea }
     }
 
-    fun maxAreaSearcher(): List<T> {
-        if (shapeList.isEmpty())
-        {
+    fun searchMaxArea(): List<T> {
+        if (shapeList.isEmpty()) {
             return emptyList()
         }
         val maxArea = shapeList.maxOf { it.area }
@@ -31,18 +29,17 @@ class ShapeCollector<T: ColoredShape2d>(_listOfShapes: List<T>) {
 
     }
 
-    fun wholeSumm(): Double {
+    fun getWholeSum(): Double {
         var wholeSum = 0.0
-        for (shape in shapeList)
-        {
+        for (shape in shapeList) {
             wholeSum += shape.area
         }
-        return  wholeSum
+        return wholeSum
     }
 
-    fun borderColorSearcher(border: Colors): List<T> = shapeList.filter { it.borderColor == border }
+    fun searchBorderColor(border: Colors): List<T> = shapeList.filter { it.borderColor == border }
 
-    fun fillColorSearcher(fillColor: Colors): List<T> =shapeList.filter { it.fillColor == fillColor }
+    fun fillColorSearcher(fillColor: Colors): List<T> = shapeList.filter { it.fillColor == fillColor }
 
     fun getListOfShapes(): List<T> = shapeList.toList()
 
@@ -55,8 +52,6 @@ class ShapeCollector<T: ColoredShape2d>(_listOfShapes: List<T>) {
     fun getByType(variable: Class<out T>): List<T> = shapeList.filterIsInstance(variable)
 
 
-
-
     fun getWholeList(totalList: List<T>) {//Is Not Needed is 2 lab
         totalList.forEach {
             shapeList.add(it)
@@ -64,11 +59,11 @@ class ShapeCollector<T: ColoredShape2d>(_listOfShapes: List<T>) {
     }
 
 
-    fun sort(equelIndentificator: Comparator<in T>): List<T> {//Is Not Needed is 2 lab
+    fun sort(equal: Comparator<in T>): List<T> {//Is Not Needed is 2 lab
 
         val sortedList = shapeList
 
-        sortedList.sortWith(equelIndentificator)
+        sortedList.sortWith(equal)
 
         return sortedList.toList()
 

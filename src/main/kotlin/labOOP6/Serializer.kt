@@ -3,7 +3,9 @@ package labOOP6
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.modules.*
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.modules.subclass
 import labOOP2.shapeInterface.ColoredShape2d
 import labOOP2.shapes.Circle
 import labOOP2.shapes.Rectangle
@@ -15,8 +17,8 @@ import java.io.File
 object Serializer {
     private val json = Json {
 
-     serializersModule = SerializersModule {
-                polymorphic(ColoredShape2d::class) {
+        serializersModule = SerializersModule {
+            polymorphic(ColoredShape2d::class) {
                 subclass(Circle::class)
                 subclass(Triangle::class)
                 subclass(Rectangle::class)
@@ -32,9 +34,7 @@ object Serializer {
         json.decodeFromString<List<ColoredShape2d>>(stringToDecoder)
 
 
-
-
-    //For files and demonstretion of serialization and deserialization
+    //For files and demonstration of serialization and deserialization
 
     fun doSerializationFile(shapeList: List<ColoredShape2d>, fileName: String) {
         File(fileName).writeText(doSerialization(shapeList))

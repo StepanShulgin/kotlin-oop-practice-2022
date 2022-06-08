@@ -4,92 +4,84 @@ import labOOP2.shapes.Circle
 import labOOP2.shapes.Rectangle
 import labOOP2.shapes.Square
 import labOOP2.shapes.Triangle
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
-
-enum class SetColor(var scolor: Colors){
-    GREEN( Colors(0.0, 255.0, 0.0, 1.0)),
-    BLUE( Colors(0.0, 0.0, 255.0, 1.0)),
-    PINK( Colors( 184.0, 50.0, 139.0,1.0))
-
-}
 
 internal class ShapeCollectorTest {
 
-    val circle = Circle(25.0, SetColor.PINK.scolor, SetColor.GREEN.scolor)
-    val triangle = Triangle(5.0, 5.0, 5.0, SetColor.BLUE.scolor, SetColor.GREEN.scolor)
-    val rectangle = Rectangle(5.0, 10.0, SetColor.GREEN.scolor, SetColor.PINK.scolor)
-    val square = Square(5.0, SetColor.PINK.scolor, SetColor.GREEN.scolor)
+    private val circle = Circle(25.0, SetColor.Pink.color, SetColor.Green.color)
+    private val triangle = Triangle(5.0, 5.0, 5.0, SetColor.Blue.color, SetColor.Green.color)
+    private val rectangle = Rectangle(5.0, 10.0, SetColor.Green.color, SetColor.Pink.color)
+    private val square = Square(5.0, SetColor.Pink.color, SetColor.Green.color)
 
     @Test
     fun addNewShape() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle))
-        assertEquals(listOf(circle, triangle, rectangle), shapeCollection.getListOfShapes())
-        shapeCollection.addNewShape(square)
-        assertEquals(listOf(circle, triangle, rectangle, square), shapeCollection.getListOfShapes())
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle))
+        assertEquals(listOf(circle, triangle, rectangle), shapeList.getListOfShapes())
+        shapeList.addNewShape(square)
+        assertEquals(listOf(circle, triangle, rectangle, square), shapeList.getListOfShapes())
     }
 
     @Test
-    fun minAreaSearcher() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle, square))
-        assertEquals(listOf(triangle), shapeCollection.minAreaSearcher())
+    fun searchMinArea() {
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle, square))
+        assertEquals(listOf(triangle), shapeList.searchMinArea())
     }
 
     @Test
-    fun maxAreaSearcher() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle, square))
-        assertEquals(listOf(circle), shapeCollection.maxAreaSearcher())
+    fun searchMaxArea() {
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle, square))
+        assertEquals(listOf(circle), shapeList.searchMaxArea())
     }
 
     @Test
-    fun wholeSumm() {
-        val shapeCollection = ShapeCollector(listOf(rectangle, square))
-        assertEquals(75.0, shapeCollection.wholeSumm())
+    fun getWholeSum() {
+        val shapeList = ShapeCollector(listOf(rectangle, square))
+        assertEquals(75.0, shapeList.getWholeSum())
     }
 
     @Test
-    fun borderColorSearcher() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle, square))
-        assertEquals(listOf(circle, square), shapeCollection.borderColorSearcher(SetColor.PINK.scolor))
+    fun searchBorderColor() {
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle, square))
+        assertEquals(listOf(circle, square), shapeList.searchBorderColor(SetColor.Pink.color))
 
     }
 
     @Test
     fun fillColorFilter() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle, square))
-        assertEquals(listOf(rectangle), shapeCollection.fillColorSearcher(SetColor.PINK.scolor))
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle, square))
+        assertEquals(listOf(rectangle), shapeList.fillColorSearcher(SetColor.Pink.color))
     }
 
     @Test
     fun getListOfShapes() {
-        val shapeCollection = ShapeCollector(listOf(rectangle, square))
-        assertEquals(listOf(rectangle, square), shapeCollection.getListOfShapes())
+        val shapeList = ShapeCollector(listOf(rectangle, square))
+        assertEquals(listOf(rectangle, square), shapeList.getListOfShapes())
     }
 
 
     @Test
     fun groupByBorderColor() {
-        val testShapeCollection = ShapeCollector(listOf(circle, square))
+        val shapeList = ShapeCollector(listOf(circle, square))
         val testMap = mutableMapOf(
-            SetColor.PINK.scolor to listOf(circle, square),
+            SetColor.Pink.color to listOf(circle, square),
         )
-        assertEquals(testMap.toString(), testShapeCollection.groupByBorderColor().toString())
+        assertEquals(testMap.toString(), shapeList.groupByBorderColor().toString())
     }
 
     @Test
     fun groupByFillColor() {
-        val testShapeCollection = ShapeCollector(listOf(circle, triangle, square))
+        val shapeList = ShapeCollector(listOf(circle, triangle, square))
         val testMap = mutableMapOf(
-            SetColor.GREEN.scolor to listOf(circle, triangle, square),
+            SetColor.Green.color to listOf(circle, triangle, square),
         )
-        assertEquals(testMap.toString(), testShapeCollection.groupByFillColor().toString())
+        assertEquals(testMap.toString(), shapeList.groupByFillColor().toString())
     }
 
     @Test
     fun getByType() {
-        val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle, square))
-        assertEquals(listOf(circle), shapeCollection.getByType(Circle::class.java))
+        val shapeList = ShapeCollector(listOf(circle, triangle, rectangle, square))
+        assertEquals(listOf(circle), shapeList.getByType(Circle::class.java))
     }
 
 }

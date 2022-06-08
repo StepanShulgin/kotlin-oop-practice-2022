@@ -1,85 +1,67 @@
 package labOOP1
 
-import kotlin.String as String
-
 data class Book(val title: String, val authors: MutableList<String>, val year: Int)
 
-fun parseBooks(inputbooks: String): List<Book> {
+fun parseBooks(bookString: String): List<Book> {
     val mainSeporator = '/'
     val bookSeparator = '\n'
     val authorSeporator = ','
     var temporaryString = ""
     var index = 0
-    var calculate = 0
+    var calculator = 0
     val bookList = mutableListOf<Book>()
     var title = ""
     var yearOfPub: String
-    var tempauthor : String
-    var countslash = 0
+    var authorSafe: String
+    var counterOfSlash = 0
     val authorList = mutableListOf<String>()
 
 
-    while (index !=inputbooks.length - 1) {
-        if(inputbooks[index] == mainSeporator && countslash==0 && calculate == 0)
-        {
-            title = (temporaryString.trim().subSequence(2,temporaryString.trim().length)).trim() as String
+    while (index != bookString.length - 1) {
+        if (bookString[index] == mainSeporator && counterOfSlash == 0 && calculator == 0) {
+            title = (temporaryString.trim().subSequence(2, temporaryString.trim().length)).trim() as String
             temporaryString = ""
-            calculate++
-            countslash++
+            calculator++
+            counterOfSlash++
 
-        }
-        else if(inputbooks[index]== mainSeporator && countslash == 1 )
-        {
-            temporaryString=""
-            countslash=0
-        }
+        } else if (bookString[index] == mainSeporator && counterOfSlash == 1) {
+            temporaryString = ""
+            counterOfSlash = 0
+        } else if (bookString[index] == authorSeporator && calculator == 1) {
 
-        else if(inputbooks[index] == authorSeporator && calculate == 1)
-        {
-
-            tempauthor = temporaryString.trim()
-            authorList.add(tempauthor)
+            authorSafe = temporaryString.trim()
+            authorList.add(authorSafe)
             temporaryString = ""
 
-        }
-        else if(inputbooks[index]==mainSeporator && calculate == 1 && countslash==0)
-        {
-            tempauthor = temporaryString.trim()
-            authorList.add(tempauthor)
+        } else if (bookString[index] == mainSeporator && calculator == 1 && counterOfSlash == 0) {
+            authorSafe = temporaryString.trim()
+            authorList.add(authorSafe)
             temporaryString = ""
-            countslash++
-            calculate++
-        }
-
-        else if(inputbooks[index]==bookSeparator)
-        {
+            counterOfSlash++
+            calculator++
+        } else if (bookString[index] == bookSeparator) {
             yearOfPub = temporaryString.trim()
 
-            temporaryString=""
-            calculate = 0
+            temporaryString = ""
+            calculator = 0
 
-            bookList.add(Book(title, mutableListOf() , yearOfPub.toInt()))
-            for(i in 0 until authorList.size)
-            {
-                (bookList[bookList.size-1].authors).add(i,authorList[i])
+            bookList.add(Book(title, mutableListOf(), yearOfPub.toInt()))
+            for (i in 0 until authorList.size) {
+                (bookList[bookList.size - 1].authors).add(i, authorList[i])
             }
             authorList.clear()
-        }
-        else if(inputbooks[index] != mainSeporator && inputbooks[index] != authorSeporator && inputbooks[index] != bookSeparator)
-        {
-            temporaryString += inputbooks[index]
+        } else if (bookString[index] != mainSeporator && bookString[index] != authorSeporator && bookString[index] != bookSeparator) {
+            temporaryString += bookString[index]
 
         }
         index++
     }
-    if(index ==inputbooks.length - 1)
-    {
-        temporaryString += inputbooks[index]
+    if (index == bookString.length - 1) {
+        temporaryString += bookString[index]
         yearOfPub = temporaryString.trim()
         bookList.add(Book(title, mutableListOf(), yearOfPub.toInt()))
-        for(i in 0 until authorList.size)
-        {
-            (bookList[bookList.size-1].authors).add(i,authorList[i])
+        for (i in 0 until authorList.size) {
+            (bookList[bookList.size - 1].authors).add(i, authorList[i])
         }
 
         authorList.clear()

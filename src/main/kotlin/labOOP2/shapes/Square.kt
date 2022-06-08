@@ -1,9 +1,9 @@
 package labOOP2.shapes
 
-import labOOP2.ErrList
 import kotlinx.serialization.Serializable
-import labOOP2.shapeInterface.ColoredShape2d
 import labOOP2.Colors
+import labOOP2.ErrorList
+import labOOP2.shapeInterface.ColoredShape2d
 
 @Serializable
 data class Square(val side: Double, override val borderColor: Colors, override val fillColor: Colors) : ColoredShape2d {
@@ -13,15 +13,13 @@ data class Square(val side: Double, override val borderColor: Colors, override v
 
     init {
         if (side < 0) {
-            throw IllegalArgumentException(ErrList.SideErr.erroR)
+            throw IllegalArgumentException(ErrorList.SideErr.error)
         }
     }
 
     override fun toString(): String {
 
-        val sideret = "[Side: $side; Fill Color: $fillColor; Border Color: $borderColor;  Area: $area]"
-
-        return sideret
+        return "[Side: $side; Fill Color: $fillColor; Border Color: $borderColor;  Area: $area]"
     }
 
 }

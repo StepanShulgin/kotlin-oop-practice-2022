@@ -1,15 +1,12 @@
 package labOOP1
 
 
-fun findNew(bookList: List<Book>): Book
-{
+fun findNew(bookList: List<Book>): Book {
     var searchableBook = Int.MIN_VALUE
     var save = bookList[0]
 
-    for (i in bookList)
-    {
-        if (i.year > searchableBook)
-        {
+    for (i in bookList) {
+        if (i.year > searchableBook) {
             searchableBook = i.year
             save = i
         }
@@ -18,32 +15,27 @@ fun findNew(bookList: List<Book>): Book
     return save
 }
 
-fun findOld(bookList: List<Book>): Book
-{
+fun findOld(bookList: List<Book>): Book {
     var searchableBook = Int.MAX_VALUE
-    var save : Book = bookList[0]
-
-    for (i in bookList)
-    {
-        if (i.year < searchableBook)
-        {
-            searchableBook = i.year
-            save = i
-
-        }
-    }
-
-    return save
-}
-
-fun findLong(bookList: List<Book>): Book
-{
-    var searchableBook = Int.MIN_VALUE
-    var save : Book = bookList[0]
+    var save: Book = bookList[0]
 
     for (i in bookList) {
-        if (i.title.length > searchableBook)
-        {
+        if (i.year < searchableBook) {
+            searchableBook = i.year
+            save = i
+
+        }
+    }
+
+    return save
+}
+
+fun findLong(bookList: List<Book>): Book {
+    var searchableBook = Int.MIN_VALUE
+    var save: Book = bookList[0]
+
+    for (i in bookList) {
+        if (i.title.length > searchableBook) {
             searchableBook = i.title.length
             save = i
         }
@@ -52,15 +44,12 @@ fun findLong(bookList: List<Book>): Book
     return save
 }
 
-fun findShort(bookList: List<Book>): Book
-{
+fun findShort(bookList: List<Book>): Book {
     var searchableBook = Int.MAX_VALUE
-    var save : Book = bookList[0]
+    var save: Book = bookList[0]
 
-    for (i in bookList)
-    {
-        if (i.title.length < searchableBook)
-        {
+    for (i in bookList) {
+        if (i.title.length < searchableBook) {
             searchableBook = i.title.length
             save = i
         }

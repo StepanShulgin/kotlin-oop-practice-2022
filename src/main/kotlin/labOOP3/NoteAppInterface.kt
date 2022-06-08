@@ -1,15 +1,14 @@
-package labOOP3.NoteBank
+package labOOP3
 
-import labOOP3.Note
 import java.net.URL
 
-interface NoteAppInterface{
+interface NoteAppInterface {
 
 
     val noteList: ArrayList<Note>
 
-    fun addTextNote(title:String, textOfNote : String): Note.TextNote
-    fun addTaskNote(title:String, textOfTask:String,deadline: String): Note.TaskNote
+    fun addTextNote(title: String, textOfNote: String): Note.TextNote
+    fun addTaskNote(title: String, textOfTask: String, deadline: String): Note.TaskNote
     fun addLinkNote(title: String, url: URL): Note.LinkNote
     fun deleteNote(note: Note)
 
@@ -22,8 +21,8 @@ interface NoteAppInterface{
     fun getAllTaskNotes(): List<Note.TaskNote>
     fun getAllLinkNotes(): List<Note.LinkNote>
 
-    fun TypeSeacher(type: Class<Any>): List<Note>
-    fun TitleSeacher(title: String): List<Note>
+    fun searchForType(type: Class<Any>): List<Note>
+    fun searchForTitle(title: String): List<Note>
 
 
 }
