@@ -23,8 +23,8 @@ fun main() {
     val shapeCollection = ShapeCollector(listOf(circle, triangle, rectangle,square))
 
 
-
-    println("Shapes groped by type: ${shapeCollection.getByType(Circle::class.java)}")
+    println("Collection's size: ${shapeCollection.getListOfShapes()}")
+    println("Only circles : ${shapeCollection.getByType(Circle::class.java)}")
     println("Collection's size: ${shapeCollection.getListOfShapesSize()}")
 
     //Verification of all methods of ShapeCollector is presented in the tests
